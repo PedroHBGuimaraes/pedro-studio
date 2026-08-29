@@ -65,11 +65,13 @@
     font-size: 15px;
     margin-bottom: 28px;
   }
+  .anchor { display: inline; font-size: 0; line-height: 0; }
   /* language toggle: show PT by default, swap to EN when #en is targeted.
+     Anchors sit at the top of the page, so switching does not scroll away.
      If a browser lacks :has() support, both sections simply show (safe fallback). */
-  #en { display: none; }
-  #en:target { display: block; }
-  :root:has(#en:target) #pt { display: none; }
+  .lang-en { display: none; }
+  :root:has(#en:target) .lang-en { display: block; }
+  :root:has(#en:target) .lang-pt { display: none; }
   @media (prefers-color-scheme: dark) {
     :root {
       --text: #e8e8e8;
@@ -84,6 +86,8 @@
 <body>
 <div class="wrap">
 
+  <span class="anchor" id="pt"></span><span class="anchor" id="en"></span>
+
   <a class="studio-link" href="home.html">&larr; Pedro Studio</a>
 
   <nav class="lang">
@@ -91,7 +95,7 @@
   </nav>
 
   <!-- ==================== PORTUGUÊS ==================== -->
-  <section id="pt" lang="pt-BR">
+  <section class="lang-pt" lang="pt-BR">
     <h1>Política de Privacidade — Pedro Studio</h1>
     <p class="updated">Última atualização: 29 de agosto de 2026</p>
 
@@ -138,7 +142,7 @@
   </section>
 
   <!-- ==================== ENGLISH ==================== -->
-  <section id="en" lang="en">
+  <section class="lang-en" lang="en">
     <h1>Privacy Policy — Pedro Studio</h1>
     <p class="updated">Last updated: August 29, 2026</p>
 

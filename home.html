@@ -31,6 +31,7 @@
     margin: 0 auto;
     padding: 32px 24px 64px;
   }
+  .anchor { display: inline; font-size: 0; line-height: 0; }
 
   nav.lang {
     margin-bottom: 40px;
@@ -47,10 +48,11 @@
   :root:has(#en:target) nav.lang a[href="#en"] { font-weight: 700; }
 
   /* language toggle: show PT by default, swap to EN when #en is targeted.
+     Anchors sit at the top of the page, so switching does not scroll away.
      If a browser lacks :has() support, both sections simply show (safe fallback). */
-  #en { display: none; }
-  #en:target { display: block; }
-  :root:has(#en:target) #pt { display: none; }
+  .lang-en { display: none; }
+  :root:has(#en:target) .lang-en { display: block; }
+  :root:has(#en:target) .lang-pt { display: none; }
 
   header.hero { padding: 8px 0 24px; }
   .brand {
@@ -147,12 +149,14 @@
 <body>
 <div class="wrap">
 
+  <span class="anchor" id="pt"></span><span class="anchor" id="en"></span>
+
   <nav class="lang">
     <a href="#pt">Português</a><span>|</span><a href="#en">English</a>
   </nav>
 
   <!-- ==================== PORTUGUÊS (padrão) ==================== -->
-  <section id="pt" lang="pt-BR">
+  <section class="lang-pt" lang="pt-BR">
     <header class="hero">
       <h1 class="brand">Pedro Studio<span class="dot">.</span></h1>
       <p class="tagline">Jogos mobile casuais com tema pré-histórico, feitos com carinho por um dev solo.</p>
@@ -190,7 +194,7 @@
   </section>
 
   <!-- ==================== ENGLISH ==================== -->
-  <section id="en" lang="en">
+  <section class="lang-en" lang="en">
     <header class="hero">
       <h1 class="brand">Pedro Studio<span class="dot">.</span></h1>
       <p class="tagline">Casual mobile games with a prehistoric theme, crafted with care by a solo dev.</p>
