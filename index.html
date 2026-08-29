@@ -36,6 +36,9 @@
   nav.lang a { color: var(--link); text-decoration: none; }
   nav.lang a:hover { text-decoration: underline; }
   nav.lang span { color: var(--muted); margin: 0 8px; }
+  nav.lang a[href="#pt"] { font-weight: 700; }
+  :root:has(#en:target) nav.lang a[href="#pt"] { font-weight: 400; }
+  :root:has(#en:target) nav.lang a[href="#en"] { font-weight: 700; }
   .studio-link {
     display: inline-block;
     margin-bottom: 20px;
@@ -62,11 +65,11 @@
     font-size: 15px;
     margin-bottom: 28px;
   }
-  .section-divider {
-    border: 0;
-    border-top: 1px solid var(--rule);
-    margin: 64px 0 48px;
-  }
+  /* language toggle: show PT by default, swap to EN when #en is targeted.
+     If a browser lacks :has() support, both sections simply show (safe fallback). */
+  #en { display: none; }
+  #en:target { display: block; }
+  :root:has(#en:target) #pt { display: none; }
   @media (prefers-color-scheme: dark) {
     :root {
       --text: #e8e8e8;
@@ -133,8 +136,6 @@
     <h2>9. CONTATO</h2>
     <p>Em caso de dúvidas sobre esta política de privacidade, entre em contato através do e-mail: <a href="mailto:pedrinhominella@gmail.com">pedrinhominella@gmail.com</a></p>
   </section>
-
-  <hr class="section-divider">
 
   <!-- ==================== ENGLISH ==================== -->
   <section id="en" lang="en">
